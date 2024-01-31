@@ -6,26 +6,27 @@ import com.yerlen.entity.Category;
 import com.yerlen.sort.AscendingSortStrategy;
 import com.yerlen.sort.DescendingSortStrategy;
 import com.yerlen.sort.SortStrategy;
+import com.yerlen.view.View;
 
 import java.util.Scanner;
 
 public class AllProcesses {
+    public static final String ASCENDING_SORTING = "1";
+    public static final String DESCENDING_SORTING = "2";
+
+    private AllProcesses() {
+        throw new RuntimeException("You can not create instance of private constructor");
+    }
+
     private static final Scanner SCANNER = new Scanner(System.in);
-    public void categoryProcess(){
+    public static void categoryProcess(){
         boolean stillInLoop = true;
         while (stillInLoop) {
-            System.out.println("""
-                    1.Create new category
-                    2.Show all categories
-                    3.Go inside option
-                    4.Go inside product
-                    5.Go inside value
-                    6.Exit
-                    """);
+            View.showMainMenu();
             String input = SCANNER.nextLine();
             switch (input){
                 case "1":
-                    System.out.println("Name of category");
+                    View.showCategoryName();
                     input = SCANNER.nextLine();
                     CreateCategoryCommand create = new CreateCategoryCommand(input);
                     create.execute();
@@ -36,28 +37,32 @@ public class AllProcesses {
                     categoriesCommand.execute();
                     break;
                 case "3":
+                    // TODO: доделать
                     break;
                 case "4":
+                    // TODO: доделать
                     break;
                 case "5":
+                    // TODO: доделать
                     break;
                 case "6":
+                    // TODO: доделать
                     stillInLoop = false;
                     break;
                 default:
+                    // TODO: переместить во View
                     System.out.println("Wrong value");
             }
         }
     }
 
-    public SortStrategy sort(){
-        System.out.println("1.Sort by ascending");
-        System.out.println("2.Sort by descending");
+    public static SortStrategy sort(){
+        View.showSortOption();
         String input = SCANNER.nextLine();
-        if("1".equals(input)) return new AscendingSortStrategy<>();
-        if("2".equals(input)) return new DescendingSortStrategy<>();
+        if(ASCENDING_SORTING.equals(input)) return new AscendingSortStrategy<>();
+        if(DESCENDING_SORTING.equals(input)) return new DescendingSortStrategy<>();
         else {
-            System.out.println("Wrong value, by default it will sort by ascending");
+            View.showDefaultSortOption();
             return new AscendingSortStrategy<>();
         }
     }
