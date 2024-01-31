@@ -7,7 +7,7 @@ import java.util.List;
 
 import static com.yerlen.processors.Start.ENTITY_MANAGER;
 public class EntityRepository {
-    public void saveEntity(ParentEntity parentEntity){
+    public static void saveEntity(ParentEntity parentEntity){
         ENTITY_MANAGER.persist(parentEntity);
     }
     public <T extends ParentEntity> List<T> findAll(Class<T> entityClass) {

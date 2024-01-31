@@ -15,7 +15,8 @@ public class CreateCategoryCommand implements Command {
     @Override
     public void execute() {
         Category category = CategoryFactory.createCategory(categoryName);
-        new EntityRepository().saveEntity(category);
+        EntityRepository.saveEntity(category);
+        // TODO запихать во View
         System.out.println("Success, new category " + categoryName + " was created");
     }
 }
