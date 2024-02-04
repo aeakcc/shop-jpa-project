@@ -9,7 +9,6 @@ public class Start {
     public static final EntityManager ENTITY_MANAGER = FACTORY.createEntityManager();
 
     public static void main(String[] args) {
-        AllProcesses.categoryProcess();
-        ENTITY_MANAGER.close();
+        AllProcesses.startProcess();
     }
 }

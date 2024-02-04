@@ -1,14 +1,11 @@
 package com.yerlen.sort;
 
-import com.yerlen.entity.Category;
-import com.yerlen.entity.ParentEntity;
-
+import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class DescendingSortStrategy <T extends ParentEntity> implements SortStrategy<T> {
+public class DescendingSortStrategy <T extends Comparable<T>> implements SortStrategy<T> {
     @Override
     public List<T> sort(List<T> items) {
-        return items.stream().sorted().collect(Collectors.toList());
+        return items.stream().sorted(Comparator.reverseOrder()).toList();
     }
 }
