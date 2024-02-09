@@ -2,8 +2,9 @@ package com.yerlen.command.category;
 
 import com.yerlen.entity.Category;
 import com.yerlen.factory.CategoryFactory;
-import com.yerlen.repository.EntityRepository;
+import com.yerlen.repository.CategoryRepository;
 import com.yerlen.util.Command;
+import com.yerlen.view.View;
 
 public class CreateCategoryCommand implements Command {
     private final String categoryName;
@@ -15,8 +16,8 @@ public class CreateCategoryCommand implements Command {
     @Override
     public void execute() {
         Category category = CategoryFactory.createCategory(categoryName);
-        EntityRepository.saveEntity(category);
-        // TODO запихать во View
-        System.out.println("Success, new category " + categoryName + " was created");
+
+        CategoryRepository.saveEntity(category);
+        View.showCreateCategory(categoryName);
     }
 }

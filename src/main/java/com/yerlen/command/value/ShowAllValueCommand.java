@@ -1,7 +1,7 @@
 package com.yerlen.command.value;
 
 import com.yerlen.entity.Value;
-import com.yerlen.repository.EntityRepository;
+import com.yerlen.repository.ValueRepository;
 import com.yerlen.sort.SortStrategy;
 import com.yerlen.util.Command;
 
@@ -16,7 +16,7 @@ public class ShowAllValueCommand implements Command {
 
     @Override
     public void execute() {
-        List<Value> values = new EntityRepository().findAll(Value.class);
+        List<Value> values = new ValueRepository().findAll();
         values = sortStrategy.sort(values);
         values.forEach(value -> System.out.printf("- %s [%d]\n", value.getName(), value.getId()));
     }
